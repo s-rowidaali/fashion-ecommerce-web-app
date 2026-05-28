@@ -1,0 +1,52 @@
+<div class="product-list">
+  <h2>Product Browser</h2>
+  
+  <div class="filters">
+    <div class="filter-group">
+      <label>Category:</label>
+      <select [(ngModel)]="selectedCategory" (change)="onCategoryChange()">
+        <option value="">All Categories</option>
+        <option *ngFor="let cat of categoryKeys" [value]="cat">
+          {{ cat }} ({{ categories[cat] }})
+        </option>
+      </select>
+    </div>
+    
+    <div class="filter-group">
+      <label>Source:</label>
+      <select [(ngModel)]="selectedSource" (change)="onSourceChange()">
+        <option value="">All Sources</option>
+        <option *ngFor="let src of sourceKeys" [value]="src">
+          {{ src }} ({{ sources[src] }})
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <div *ngIf="isLoading" class="loading">Loading products...</div>
+  
+  <div *ngIf="!isLoading && products.length > 0" class="products">
+    <div class="product-item" *ngFor="let product of products">
+      <div class="product-image">
+        <img [src]="product.Image" alt="{{ product.Name }}" (error)="onImageError($event)">
+      </div>
+      <div class="product-info">
+        <h3>{{ product.Name }}</h3>
+        <p class="category">{{ product.Category }}</p>
+        <p class="source">Source: {{ product.Source }}</p>
+        <p class="price">${{ product.Price }}</p>
+        <a [href]="product.Link" target="_blank" class="btn-view">View on Store</a>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!isLoading && products.length === 0" class="no-results">
+    No products found. Try changing filters.
+  </div>
+
+  <div class="pagination">
+    <button (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+    <span>Page {{ currentPage }} of {{ totalPages }}</span>
+    <button (click)="nextPage()" [disabled]="currentPage >= totalPages">Next</button>
+  </div>
+</div>

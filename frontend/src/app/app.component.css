@@ -1,0 +1,20 @@
+/* App Component Styles - Already defined in global styles.css */
+/* This file can remain minimal as navbar styling is in global styles */
+
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.navbar {
+  flex-shrink: 0;
+}
+
+.container {
+  flex: 1;
+  max-width: 1920px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 30px 20px;
+}

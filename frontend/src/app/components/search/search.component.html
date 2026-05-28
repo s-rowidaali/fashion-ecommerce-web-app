@@ -1,0 +1,13 @@
+<div class="search">
+  <input type="text" [(ngModel)]="searchQuery" (keyup.enter)="search()" placeholder="Search products...">
+  <button (click)="search()">Search</button>
+  
+  <div *ngIf="isSearching" class="loading">Searching...</div>
+  
+  <div *ngIf="!isSearching && searchResults.length > 0" class="results">
+    <div *ngFor="let product of searchResults" class="result-item">
+      <h4>{{ product.Name }}</h4>
+      <p>{{ product.Category }}</p>
+    </div>
+  </div>
+</div>

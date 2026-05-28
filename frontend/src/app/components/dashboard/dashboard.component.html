@@ -1,0 +1,87 @@
+<div class="dashboard-container">
+  <!-- Hero Section -->
+  <div class="hero-section">
+    <div class="hero-content">
+      <h1>✨ Fashion Analytics Dashboard</h1>
+      <p>Discover trends, insights, and beautiful fashion products at a glance</p>
+    </div>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="loading-container">
+    <div class="spinner"></div>
+    <p>Loading your insights...</p>
+  </div>
+
+  <!-- Stats Grid -->
+  <div *ngIf="!isLoading" class="content-wrapper">
+    <!-- Key Metrics Section -->
+    <div class="metrics-section">
+      <h2 class="section-title">📊 Key Metrics</h2>
+      <div class="stats-grid">
+        <div class="stat-box" style="--delay: 0s">
+          <div class="stat-icon">📦</div>
+          <div class="stat-value">{{ stats.totalProducts }}</div>
+          <div class="stat-label">Total Products</div>
+        </div>
+        <div class="stat-box" style="--delay: 0.1s">
+          <div class="stat-icon">🏷️</div>
+          <div class="stat-value">{{ stats.categories }}</div>
+          <div class="stat-label">Categories</div>
+        </div>
+        <div class="stat-box" style="--delay: 0.2s">
+          <div class="stat-icon">🌐</div>
+          <div class="stat-value">{{ stats.sources }}</div>
+          <div class="stat-label">Data Sources</div>
+        </div>
+        <div class="stat-box" style="--delay: 0.3s">
+          <div class="stat-icon">💰</div>
+          <div class="stat-value">${{ stats.avgPrice }}</div>
+          <div class="stat-label">Avg Price</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Featured Products Section -->
+    <div class="featured-section">
+      <div class="section-header">
+        <h2 class="section-title">✨ Featured Collections</h2>
+        <p class="section-subtitle">Curated fashion pieces from our top sources</p>
+      </div>
+      
+      <div class="product-grid-featured">
+        <div class="product-card-featured" *ngFor="let product of recentProducts; let i = index" [style.animation-delay]="(i * 0.08) + 's'">
+          <div class="product-image-container">
+            <img [src]="product.Image" alt="{{ product.Name }}" (error)="onImageError($event)">
+            <div class="product-badge">{{ product.Source }}</div>
+            <div class="product-overlay">
+              <a [href]="product.Link" target="_blank" class="btn btn-primary">View Product</a>
+            </div>
+          </div>
+          <div class="product-info">
+            <h4 class="product-name">{{ product.Name | slice:0:40 }}{{ product.Name.length > 40 ? '...' : '' }}</h4>
+            <div class="product-details">
+              <span class="category-badge">{{ product.Category }}</span>
+              <span class="price-tag">${{ product.Price }}</span>
+            </div>
+            <div class="product-footer">
+              <small class="text-muted">From {{ product.Source }}</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="cta-section">
+      <div class="cta-card">
+        <h3>Ready to explore more?</h3>
+        <p>Browse all products or dive into detailed analytics</p>
+        <div class="cta-buttons">
+          <a routerLink="/products" class="btn btn-primary">Browse Products</a>
+          <a routerLink="/analytics" class="btn btn-secondary">View Analytics</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

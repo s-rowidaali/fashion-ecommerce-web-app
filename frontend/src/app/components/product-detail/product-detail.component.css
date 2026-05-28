@@ -1,0 +1,39 @@
+.product-detail {
+  padding: 1rem;
+  background: white;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.detail-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.product-image img {
+  width: 100%;
+  border-radius: 6px;
+}
+
+.product-info p {
+  margin: 1rem 0;
+  font-size: 1.1rem;
+}
+
+.btn-buy {
+  display: inline-block;
+  background: #ff69b4;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: 4px;
+  text-decoration: none;
+  margin-top: 1rem;
+}
+
+.loading {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+}
